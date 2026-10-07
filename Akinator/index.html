@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CSE 15 Akinator • Guess the Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- =========================================================
+         SCREEN 1: LANDING PAGE
+         ========================================================= -->
+    <section id="screen-landing" class="screen active landing-screen">
+      <div class="landing-content">
+        
+        <div class="landing-header">
+          <div class="grad-cap-icon">🎓</div>
+          <h1 class="landing-title">CSE 15<br>Akinator</h1>
+          <p class="landing-subtitle">Think of a CSE 15... I'll guess it !</p>
+        </div>
+
+        <div class="landing-genie-wrap">
+          <img src="assets/landing_bg.jpg" alt="CSE 15 Genie" class="landing-genie-img">
+        </div>
+
+        <div class="landing-bubble">
+          Is it a student of CSE-15?
+        </div>
+
+        <button id="btn-let-play" class="btn-let-play" onclick="startGame()">
+          <span>👑</span> Let play
+        </button>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SCREEN 2: QUESTION ENGINE
+         ========================================================= -->
+    <section id="screen-question" class="screen question-screen">
+      
+      <!-- Top Bar -->
+      <nav class="top-navbar">
+        <div class="game-logo">CSE 15 akinator</div>
+        <div class="pool-counter-badge">
+          <span>Candidates:</span>
+          <span id="pool-count" class="pool-count-num">80</span>
+        </div>
+      </nav>
+
+      <!-- Stage -->
+      <div class="question-stage">
+        
+        <!-- Left: Genie Character -->
+        <div class="genie-character-col">
+          <img src="assets/genie_question.jpg" alt="Thinking Genie" class="genie-img-interactive">
+        </div>
+
+        <!-- Right: Question & Options -->
+        <div class="interaction-col">
+          
+          <div class="speech-bubble">
+            <div id="q-step-label" class="q-step-tag">Question 1 of 5</div>
+            <div id="q-title" class="q-title">Does the student is Male or Female?</div>
+            <div id="q-hint-container" style="display: none;">
+              <span id="q-hint-text" class="q-hint"></span>
+            </div>
+          </div>
+
+          <div id="options-box" class="options-card">
+            <!-- Dynamic choice buttons inserted here -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================
+         SCREEN 3: VICTORY / END SCREEN
+         ========================================================= -->
+    <section id="screen-victory" class="screen victory-screen">
+      
+      <nav class="top-navbar">
+        <div class="game-logo">CSE 15 akinator</div>
+      </nav>
+
+      <div class="victory-stage">
+        
+        <!-- Left: Celebrating Genie -->
+        <div class="victory-genie-col">
+          <img src="assets/genie_celebrate.jpg" alt="Celebrating Genie" class="genie-img-interactive">
+        </div>
+
+        <!-- Right: Victory Info & Actions -->
+        <div class="victory-content-col">
+          
+          <div class="victory-bubble">
+            <div class="vic-heading">Great, guessed right one more time !</div>
+            <div id="vic-name" class="vic-student-name">ARVIND KUMAR</div>
+            <div class="vic-student-badge">CSE-15 Student</div>
+
+            <div class="vic-details-grid">
+              
+              <div class="vic-detail-item">
+                <div class="vic-detail-lbl">Current Section</div>
+                <div class="vic-detail-val" id="vic-curr-sec">CSE15</div>
+              </div>
+
+              <div class="vic-detail-item">
+                <div class="vic-detail-lbl">Previous Section</div>
+                <div class="vic-detail-val" id="vic-prev-sec">CSE14</div>
+              </div>
+
+              <div class="vic-detail-item" style="grid-column: span 2;">
+                <div class="vic-detail-lbl">Roll Number</div>
+                <div class="vic-detail-val" id="vic-roll">2503201000298</div>
+              </div>
+
+              <!-- Protected Phone Number -->
+              <div class="phone-protect-strip">
+                <div>
+                  <div class="vic-detail-lbl" style="color: #92400e;">Student Mobile</div>
+                  <div id="vic-phone-display" class="phone-masked-txt">+91 ••••• •••••</div>
+                </div>
+                <button id="btn-unlock-trigger" class="btn-unlock-phone" onclick="openKeyModal()">
+                  🔒 Unlock
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Center Play Again Button -->
+          <button class="btn-play-again" onclick="restartGame()">
+            ◆ • Play again • ◆
+          </button>
+
+          <!-- Bottom Card: Share & Add Pic -->
+          <div class="victory-bottom-card">
+            <div class="share-title">Share your feat with your friends</div>
+            
+            <a id="btn-wa-share" href="#" target="_blank" class="btn-whatsapp-share">
+              <span>💬</span> Share on WhatsApp
+            </a>
+
+            <div class="action-links-list">
+              <a href="javascript:void(0)" class="action-link" onclick="openPicModal()">
+                📷 You can add a pic
+              </a>
+              <a href="javascript:void(0)" class="action-link" onclick="restartGame()">
+                🎮 Play with another classmate
+              </a>
+            </div>
+
+            <!-- Developer Social Links -->
+            <div class="dev-socials">
+              <a href="https://github.com/ArvindKumar298/Mini-Project" target="_blank">
+                🐙 GitHub: ArvindKumar298
+              </a>
+              <span>•</span>
+              <a href="https://www.linkedin.com/in/arvind-kumar-635747375" target="_blank">
+                💼 LinkedIn: Arvind Kumar
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- =========================================================
+       MODAL 1: DAILY SECURITY KEY UNLOCK
+       ========================================================= -->
+  <div id="key-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">🔒 Unlock Phone Number</h3>
+        <button class="modal-close-btn" onclick="closeKeyModal()">&times;</button>
+      </div>
+
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px;">
+        Student contact numbers are protected. Enter today's 1-day access key to view:
+      </p>
+
+      <input type="text" id="daily-key-input" class="key-input" placeholder="e.g. CSE15-OCT07-968FB" maxlength="20">
+      
+      <button class="btn-modal-submit" onclick="submitKey()">
+        🔓 Verify & Unlock
+      </button>
+
+      <div class="modal-divider">HOW TO GET TODAY'S KEY</div>
+
+      <a href="https://t.me/+SNXgNiPCwMAxMjdl" target="_blank" class="btn-telegram-channel">
+        <span>📢</span> Get Today's Key on Telegram Channel
+      </a>
+
+      <div class="classmate-fallback-note">
+        "Hi I am Arvind Kumar Your classmate and you can contact me on whatsapp for key"
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: "YOU CAN ADD A PIC"
+       ========================================================= -->
+  <div id="pic-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">📸 Add Your Picture</h3>
+        <button class="modal-close-btn" onclick="closePicModal()">&times;</button>
+      </div>
+
+      <div style="text-align: center; padding: 10px 0;">
+        <div style="font-size: 3rem; margin-bottom: 10px;">🎓</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;">Want your photo in the game?</h4>
+        <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 16px;">
+          Send your picture to <strong>Arvind Kumar</strong> on WhatsApp or via our Telegram channel, and your profile picture will be added to CSE 15 Akinator!
+        </p>
+      </div>
+
+      <a href="https://t.me/+SNXgNiPCwMAxMjdl" target="_blank" class="btn-telegram-channel" style="margin-bottom: 12px;">
+        <span>📢</span> Join Telegram Channel
+      </a>
+
+      <div class="classmate-fallback-note" style="text-align: center;">
+        "Hi I am Arvind Kumar Your classmate and you can contact me on whatsapp for key"
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

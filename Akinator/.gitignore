@@ -1,0 +1,8 @@
+# Sensitive raw source data
+students.csv
+
+# Temporary / scratch scripts
+setup_assets.py
+verify_filtering.py
+*.pyc
+__pycache__/
